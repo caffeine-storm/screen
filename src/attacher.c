@@ -89,7 +89,7 @@ static void QueryResultFail(int sigsig)
  *               MSG_CONT, MSG_WINCH and nothing else!
  *
  *  if type == MSG_ATTACH and sockets are used, attaches
- *  tty filedescriptor.
+ *  tty file descriptor.
  */
 
 static int WriteMessage(int sock, Message *msg)

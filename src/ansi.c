@@ -1334,7 +1334,7 @@ static void PrintStart(Window *win)
 {
 	win->w_pdisplay = NULL;
 
-	/* find us a nice display to print on, fore prefered */
+	/* find us a nice display to print on, fore preferred */
 	display = win->w_lastdisp;
 	if (!(display && win== D_fore && (printcmd || D_PO)))
 		for (display = displays; display; display = display->d_next)
@@ -1876,7 +1876,7 @@ static void RestorePosRendition(Window *win)
 static void Report(Window *win, char *fmt, int n1, int n2)
 {
 	int len;
-	char rbuf[40];		/* enough room for all replys */
+	char rbuf[40];		/* enough room for all replies */
 
 	sprintf(rbuf, fmt, n1, n2);
 	len = strlen(rbuf);
