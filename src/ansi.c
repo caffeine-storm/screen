@@ -497,8 +497,6 @@ void WriteString(Window *win, char *buf, size_t len)
 					}
 					win->w_rend.font = 0;
 				}
-				if (win->w_encoding == UTF8 && utf8_isdouble(c))
-					win->w_mbcs = 0xff;
 				if (win->w_encoding == UTF8 && c >= 0x0300 && utf8_iscomb(c)) {
 					int ox, oy;
 					struct mchar omc;
@@ -528,6 +526,8 @@ void WriteString(Window *win, char *buf, size_t len)
 					}
 					break;
 				}
+				if (win->w_encoding == UTF8 && utf8_isdouble(c))
+					win->w_mbcs = 0xff;
 				font = win->w_rend.font;
 				if (font == KANA && win->w_encoding == SJIS && win->w_mbcs == 0) {
 					/* Lets see if it is the first byte of a kanji */
