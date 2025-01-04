@@ -97,7 +97,7 @@ static int gl_License_row(ListData *ldata, ListRow *lrow)
 {
 	(void)ldata; /* unused */
 
-	char *line = calloc(sizeof(char), flayer->l_width + 1);
+	char *line = calloc(flayer->l_width + 1, sizeof(char));
 	char *start = (char *)lrow->data;
 	char *lastspace = start;
 	size_t linelen = 0;
