@@ -104,7 +104,7 @@ bool      attach_tty_is_in_new_ns = false;
 /* Content of the tty symlink when attach_tty_is_in_new_ns == true. */
 char      attach_tty_name_in_ns[MAXPATHLEN];
 
-char      SocketPath[MAXPATHLEN];
+char      SocketPath[MAXPATHLEN + 2];
 char     *SocketName;               /* SocketName is pointer in SocketPath */
 char     *SocketMatch = NULL;       /* session id command line argument */
 int       ServerSocket = -1;
