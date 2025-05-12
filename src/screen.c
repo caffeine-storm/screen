@@ -199,6 +199,20 @@ static int GotSigChld;
 /********************************************************************/
 /********************************************************************/
 
+static int lf_secreopen(char *name, int wantfd, struct Log *l)
+{
+	int got_fd;
+
+	close(wantfd);
+	if (((got_fd = secopen(name, O_WRONLY | O_CREAT | O_APPEND, 0666)) < 0) || lf_move_fd(got_fd, wantfd) < 0) {
+		logfclose(l);
+		return -1;
+	}
+	l->st->st_ino = l->st->st_dev = 0;
+	return 0;
+}
+
+
 static struct passwd *getpwbyname(char *name, struct passwd *ppp)
 {
 	int n;
@@ -349,6 +363,10 @@ int main(int argc, char **argv)
 #ifdef ENABLE_TELNET
 	af                = AF_UNSPEC;
 #endif
+        /* lf_secreopen() is vital for the secure operation in setuid-root context.
+	 * Do not remove it
+	 */
+	logreopen_register(lf_secreopen);
 
 	real_uid          = getuid();
 	real_gid          = getgid();
