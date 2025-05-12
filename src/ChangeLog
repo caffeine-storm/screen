@@ -1,3 +1,15 @@
+Version 5.0.1 (12/05/25):
+  * Fixes:
+	- CVE-2025-46805: do NOT send signals with root privileges
+	- CVE-2025-46804: avoid file existence test information leaks
+	- CVE-2025-46803: apply safe PTY default mode of 0620
+	- CVE-2025-46802: prevent temporary 0666 mode on PTYs in attacher
+	- CVE-2025-23395: reintroduce lf_secreopen() for logfile
+	- buffer overflow due bad strncpy()
+	- uninitialized variables warnings
+	- typos
+	- combining char handling that could lead to a segfault
+
 Version 5.0.0 (28/08/24):
   * Rewritten authentication mechanism
   * Add escape %T to show current tty for window
