@@ -861,22 +861,47 @@ int main(int argc, char **argv)
 #endif
 	}
 
-	if (stat(SocketPath, &st) == -1)
-		Panic(errno, "Cannot access %s", SocketPath);
-	else if (!S_ISDIR(st.st_mode))
-		Panic(0, "%s is not a directory.", SocketPath);
+	if (stat(SocketPath, &st) == -1) {
+		if (eff_uid == real_uid) {
+			Panic(errno, "Cannot access %s", SocketPath);
+		} else {
+			Panic(0, "Error accessing %s", SocketPath);
+		}
+	}
+	else if (!S_ISDIR(st.st_mode)) {
+		if (eff_uid == real_uid || st.st_uid == real_uid) {
+			Panic(0, "%s is not a directory.", SocketPath);
+		} else {
+			Panic(0, "Error accessing %s", SocketPath);
+		}
+	}
 	if (multi) {
-		if (st.st_uid != multi_uid)
-			Panic(0, "%s is not the owner of %s.", multi, SocketPath);
+		if (st.st_uid != multi_uid) {
+			if (eff_uid == real_uid || st.st_uid == real_uid) {
+				Panic(0, "%s is not the owner of %s.", multi, SocketPath);
+			} else {
+				Panic(0, "Error accessing %s", SocketPath);
+			}
+		}
 	} else {
 #ifdef SOCKET_DIR	/* if SOCKETDIR is not defined, the socket is in $HOME.
 			   in that case it does not make sense to compare uids. */
-		if (st.st_uid != real_uid)
-			Panic(0, "You are not the owner of %s.", SocketPath);
+		if (st.st_uid != real_uid) {
+			if (eff_uid == real_uid) {
+				Panic(0, "You are not the owner of %s.", SocketPath);
+			} else {
+				Panic(0, "Error accessing %s", SocketPath);
+			}
+		}
 #endif
 	}
-	if ((st.st_mode & 0777) != 0700)
-		Panic(0, "Directory %s must have mode 700.", SocketPath);
+	if ((st.st_mode & 0777) != 0700) {
+		if (eff_uid == real_uid || st.st_uid == real_uid) {
+			Panic(0, "Directory %s must have mode 700.", SocketPath);
+		} else {
+			Panic(0, "Error accessing %s", SocketPath);
+		}
+	}
 	if (SocketMatch && strchr(SocketMatch, '/'))
 		Panic(0, "Bad session name '%s'", SocketMatch);
 	SocketName = SocketPath + strlen(SocketPath) + 1;
@@ -901,8 +926,13 @@ int main(int argc, char **argv)
 			else
 				exit(9 + (fo || oth ? 1 : 0) + fo);
 		}
-		if (fo == 0)
-			Panic(0, "No Sockets found in %s.\n", SocketPath);
+		if (fo == 0) {
+			if (eff_uid == real_uid || st.st_uid == real_uid) {
+				Panic(0, "No Sockets found in %s.\n", SocketPath);
+			} else {
+				Panic(0, "Error accessing %s", SocketPath);
+			}
+		}
 		Msg(0, "%d Socket%s in %s.", fo, fo > 1 ? "s" : "", SocketPath);
 		eexit(0);
 	}

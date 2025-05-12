@@ -148,8 +148,13 @@ int FindSocket(int *fdp, int *nfoundp, int *notherp, char *match)
 	xseteuid(real_uid);
 	xsetegid(real_gid);
 
-	if ((dirp = opendir(SocketPath)) == NULL)
-		Panic(errno, "Cannot opendir %s", SocketPath);
+	if ((dirp = opendir(SocketPath)) == NULL) {
+		if (eff_uid == real_uid) {
+			Panic(errno, "Cannot opendir %s", SocketPath);
+		} else {
+			Panic(0, "Error accessing %s", SocketPath);
+		}
+	}
 
 	slist = NULL;
 	slisttail = &slist;
