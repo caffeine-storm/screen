@@ -145,8 +145,6 @@ bool      hastruecolor = false;
 
 char     *multi;
 int       multiattach;
-int       tty_mode;
-int       tty_oldmode = -1;
 
 char      HostName[MAXSTR];
 pid_t     MasterPid;
@@ -765,7 +763,6 @@ int main(int argc, char **argv)
 
 		/* ttyname implies isatty */
 		SetTtyname(true, &st);
-		tty_mode = (int)st.st_mode & 0777;
 
 		fl = fcntl(0, F_GETFL, 0);
 		if (fl != -1 && (fl & (O_RDWR | O_RDONLY | O_WRONLY)) == O_RDWR)
@@ -1569,15 +1566,6 @@ void Panic(int err, const char *fmt, ...)
 			if (D_userpid)
 				Kill(D_userpid, SIG_BYE);
 		}
-	if (tty_oldmode >= 0) {
-#if defined(HAVE_SETEUID)
-		if (setuid(own_uid))
-			xseteuid(own_uid);	/* may be a loop. sigh. */
-#else
-		setuid(own_uid);
-#endif
-		chmod(attach_tty, tty_oldmode);
-	}
 	eexit(1);
 }
 
