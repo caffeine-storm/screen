@@ -5513,6 +5513,8 @@ Here is the full list of supported escapes:
 @table @code
 @item %
 the escape character itself
+@item *
+caret character literal (@code{^})
 @item a
 either @code{am} or @code{pm}
 @item A
@@ -5551,6 +5553,8 @@ sets %? to true if the current region is in copy/paste mode
 session name
 @item t
 window title
+@item T
+current tty for window
 @item u
 all other users on this window
 @item w
