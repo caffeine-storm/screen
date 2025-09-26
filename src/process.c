@@ -1353,7 +1353,7 @@ static void DoCommandAt(struct action *act)
 					 * while looping through windows, we have fore AND
 					 * display context. This will confuse users who try to
 					 * set up loops inside of loops, but often allows to do
-					 * what you mean, even when you adress your context wrong.
+					 * what you mean, even when you address your context wrong.
 					 */
 					i = 0;
 					/* XXX: other displays? */
@@ -5297,7 +5297,7 @@ void DoCommand(char **argv, int *argl)
 	const char *cmd = *argv;
 
 	act.quiet = 0;
-	/* For now, we actually treat both 'supress error' and 'suppress normal message' as the
+	/* For now, we actually treat both 'suppress error' and 'suppress normal message' as the
 	 * same, and ignore all messages on either flag. If we wanted to do otherwise, we would
 	 * need to change the definition of 'OutputMsg' slightly. */
 	if (*cmd == '@') {	/* Suppress error */

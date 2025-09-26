@@ -161,7 +161,7 @@ int main(void)
 		wmc_end(&wmc, pos, &chg);
 		ASSERT(!chg);
 
-		/* similarily, test the reverse---else branch taken */
+		/* similarly, test the reverse---else branch taken */
 		wmc_init(&wmc, pos);
 		wmc_set(&wmc);
 		wmc_else(&wmc, pos, &chg);

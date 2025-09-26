@@ -449,7 +449,7 @@ This option is equivalent to the @code{shelltitle} command
 (@pxref{Shell}).
 
 @item -T @var{term}
-Set the $TERM enviroment variable using the specified @emph{term} as
+Set the $TERM environment variable using the specified @emph{term} as
 opposed to the default setting of @code{screen}.
 
 @item -U
@@ -1183,7 +1183,7 @@ Name this session.  @xref{Session Name}.
 @item setenv [@var{var} [@var{string}]]
 Set an environment variable for new windows.  @xref{Setenv}.
 @item setsid @var{state}
-Controll process group creation for windows.  @xref{Setsid}.
+Control process group creation for windows.  @xref{Setsid}.
 @item shell @var{command}
 Set the default program for new windows.  @xref{Shell}.
 @item shelltitle @var{title}
@@ -1522,7 +1522,7 @@ current group is displayed.
 Using groups in combination with layouts will help create a 
 multi-desktop experience. One group can be assigned for each
 layout made. Windows can be made, split, and organized within each
-group as desired. Afterwhich, switching between groups can be as easy
+group as desired, after which switching between groups can be as easy
 as switching layouts.
 
 @node Selecting, Session Management, New Window, Top
@@ -2365,7 +2365,7 @@ regions. This arrangement is restored when a @code{screen} session
 is reattached or switched back from a different layout. If the
 session ends or the @code{screen} process dies, the layout
 arrangements are lost. The @code{layout dump} command should help
-in this siutation. If a number
+in this situation. If a number
 or title is supplied, @code{screen} will remember the arrangement of
 that particular layout. Without any options, @code{screen} will
 remember the current layout.
@@ -3549,7 +3549,7 @@ with @samp{-U}, otherwise @code{off}.
 
 @deffn Command cjkwidth [state]
 (none)@*
-Toggle how ambiguoous characters are treated. If cjkwidth is on screen
+Toggle how ambiguous characters are treated. If cjkwidth is on screen
 interprets them as double (full) width characters. If off then they are seen
 as one cell (half) width characters.
 @end deffn
@@ -3698,7 +3698,7 @@ or last non-whitespace character on the line.
 
 @noindent
 @kbd{f}/@kbd{F}, @kbd{t}/@kbd{T} move the cursor forward/backward to the 
-next occurence of the target. (eg, '3fy' will move the cursor to the 3rd 
+next occurrence of the target. (eg, '3fy' will move the cursor to the 3rd
 'y' to the right.)
 
 @noindent

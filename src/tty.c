@@ -191,7 +191,7 @@ void InitTTY(struct mode *m, int ttyflag)
 /* #if defined(IMAXBEL)
  * 	m->tio.c_iflag |= IMAXBEL;
  * #endif
- * sorry, this one is ridiculus. jw */
+ * sorry, this one is ridiculous. jw */
 
 	if (!ttyflag) {		/* may not even be good for ptys.. */
 #if defined(ICRNL)
@@ -427,7 +427,7 @@ void SetMode(struct mode *op, struct mode *np, int flow, int interrupt)
 
 	/*
 	 * Unfortunately, the master process never will get SIGINT if the real
-	 * terminal is different from the one on which it was originaly started
+	 * terminal is different from the one on which it was originally started
 	 * (process group membership has not been restored or the new tty could not
 	 * be made controlling again). In my solution, it is the attacher who
 	 * receives SIGINT (because it is always correctly associated with the real

@@ -774,7 +774,7 @@ int main(int argc, char **argv)
 			/* In case the pts device exists in another namespace we directly operate
 			 * on the symbolic link itself. However, this means that we need to keep
 			 * the fd open since we have no direct way of identifying the associated
-			 * pts device accross namespaces. This is ok though since keeping fds open
+			 * pts device across namespaces. This is ok though since keeping fds open
 			 * is done in the codebase already.
 			 */
 			if (attach_tty_is_in_new_ns)

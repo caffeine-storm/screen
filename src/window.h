@@ -175,7 +175,7 @@ struct Window {
 	struct acluser *w_wlockuser;	/* NULL when unlocked or user who writes */
 	AclBits w_userbits[ACL_BITS_PER_WIN];
 	AclBits w_lio_notify;		/* whom to tell when lastio+seconds < time() */
-	AclBits w_mon_notify;		/* whom to tell monitor statis */
+	AclBits w_mon_notify;		/* whom to tell monitor status */
 
 	enum state_t w_state;		/* parser state */
 	enum string_t w_StringType;
