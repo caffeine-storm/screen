@@ -41,6 +41,11 @@
 #include <sys/ioctl.h>
 #include <unistd.h>
 
+/* For SRIOCSREDIR on Solaris */
+#if defined(_sun_)
+# include <sys/strredir.h>
+#endif
+
 #include "screen.h"
 #include "fileio.h"
 #include "misc.h"
