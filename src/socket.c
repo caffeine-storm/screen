@@ -1154,7 +1154,12 @@ static void AskPassword(Message *m)
 }
 
 #if ENABLE_PAM
-static int screen_conv(int num_msg, const struct pam_message **msg,
+#if defined(_sun) || defined(__sun_)    /* Solaris */
+# define PAM_MSG_CONST
+#else                                   /* Linux, BSD, etc. */
+# define PAM_MSG_CONST const
+#endif
+static int screen_conv(int num_msg, PAM_MSG_CONST struct pam_message **msg,
 		struct pam_response **resp, void *data)
 {
 	(void)num_msg;	/* unused */
