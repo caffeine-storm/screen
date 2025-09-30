@@ -1990,9 +1990,7 @@ void ResetWindow(Window *win)
 
 Window *GetWindowByNumber(uint16_t n)
 {
-	if (first_window->w_number <= n &&
-	    n <= last_window->w_number)
-	{
+	if (first_window->w_number <= n && n <= last_window->w_number) {
 		Window *w;
 		if ((first_window->w_number + (last_window->w_number - first_window->w_number) / 2) > n) {
 			/* look from the start */
@@ -2005,7 +2003,8 @@ Window *GetWindowByNumber(uint16_t n)
 			while (w && w->w_number > n)
 				w = w->w_prev;
 		}
-		if (w->w_number == n)
+
+		if (w && w->w_number == n)
 			return w;
 	}
 	return NULL;
